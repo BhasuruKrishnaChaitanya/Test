@@ -1,6 +1,9 @@
 import java.io.File;  
-import java.io.FileInputStream;  
-import java.util.Iterator;  
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.poi.ss.usermodel.Cell;  
 import org.apache.poi.ss.usermodel.Row;  
 import org.apache.poi.xssf.usermodel.XSSFSheet;  
@@ -26,7 +29,9 @@ public class test{
             XSSFWorkbook wb = new XSSFWorkbook(fis);
             XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
             Iterator<Row> itr = sheet.iterator();    //iterating over excel file
-            int cnt = 0;
+            int rowCounter = 0;
+            int palindromeNameCounter=0;
+            List<String> palindromeNames = new ArrayList<String>();
             while (itr.hasNext()){
                 Row row = itr.next();
                 Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
@@ -34,7 +39,12 @@ public class test{
                     Cell cell = cellIterator.next();
                     switch (cell.getCellType()){
                         case Cell.CELL_TYPE_STRING:    //field that represents string cell type
-                        System.out.print(cell.getStringCellValue() + "\t");  //Operation
+                        System.out.print(cell.getStringCellValue() + "\t");
+                        if(cell.getColumnIndex()==0) {
+                        	if(isPalindrome(cell.getStringCellValue())) {
+                        		palindromeNames.add(cell.getStringCellValue());
+                        	}
+                        }
                         break;
                         case Cell.CELL_TYPE_NUMERIC:    //field that represents number cell type
                         System.out.print(cell.getNumericCellValue() + "\t");  //Operation
@@ -43,9 +53,10 @@ public class test{
                     }
                 } 
                 System.out.println(""); 
-                cnt++;//Operation
+                rowCounter++;//Operation
             }
-            System.out.println(cnt);
+            System.out.println(rowCounter);
+            System.out.println(palindromeNames);
         }
         catch(Exception e){
             e.printStackTrace();
