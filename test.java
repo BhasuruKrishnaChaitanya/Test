@@ -51,7 +51,6 @@ public class test{
                 Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
                 while (cellIterator.hasNext()){
                     Cell cell = cellIterator.next();
-                    if(cell.getRowIndex()!=0) {
                     switch (cell.getCellType()){
                         case Cell.CELL_TYPE_STRING:    //field that represents string cell type
                         System.out.print(cell.getStringCellValue() + "\t");
@@ -70,7 +69,6 @@ public class test{
                         System.out.print(cell.getNumericCellValue() + "\t");  //Operation
                         break;
                         default:
-                    }
                     }
                 } 
                 System.out.println(""); 
