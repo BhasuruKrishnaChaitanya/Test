@@ -42,6 +42,7 @@ public class test{
             XSSFWorkbook wb = new XSSFWorkbook(fis);
             XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
             Iterator<Row> itr = sheet.iterator();    //iterating over excel file
+            Row row = itr.next();
             int rowCounter = 0;
             // int palindromeNameCounter=0;
             int emailInvalidCounter=0;
