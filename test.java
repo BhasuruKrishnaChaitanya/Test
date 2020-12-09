@@ -5,44 +5,37 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;  
 import org.apache.poi.xssf.usermodel.XSSFSheet;  
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;  
-public class XLSXReaderExample  
-{
-public static void main(String[] args)   
-{  
-try  
-{  
-File file = new File("C:\\demo\\employee.xlsx");   //creating a new file instance  
-FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file  
-//creating Workbook instance that refers to .xlsx file  
-XSSFWorkbook wb = new XSSFWorkbook(fis);   
-XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object  
-Iterator<Row> itr = sheet.iterator();    //iterating over excel file  
-int cnt = 0;
-while (itr.hasNext())                 
-{  
-Row row = itr.next();  
-Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column  
-while (cellIterator.hasNext())   
-{  
-Cell cell = cellIterator.next();  
-switch (cell.getCellType())               
-{  
-case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
-System.out.print(cell.getStringCellValue() + "\t\t\t");  //Operation
-break;  
-case Cell.CELL_TYPE_NUMERIC:    //field that represents number cell type  
-System.out.print(cell.getNumericCellValue() + "\t\t\t");  //Operation
-break;  
-default:  
-}  
-}  
-/*System.out.println("");*/ cnt++;//Operation 
+public class Test{
+    public static void main(String[] args){
+        try{
+            File file = new File("C:\\demo\\employee.xlsx");   //creating a new file instance
+            FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file
+            //creating Workbook instance that refers to .xlsx file
+            XSSFWorkbook wb = new XSSFWorkbook(fis);
+            XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
+            Iterator<Row> itr = sheet.iterator();    //iterating over excel file
+            int cnt = 0;
+            while (itr.hasNext()){
+                Row row = itr.next();
+                Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
+                while (cellIterator.hasNext()){
+                    Cell cell = cellIterator.next();
+                    switch (cell.getCellType()){
+                        case Cell.CELL_TYPE_STRING:    //field that represents string cell type
+                        System.out.print(cell.getStringCellValue() + "\t\t\t");  //Operation
+                        break;
+                        case Cell.CELL_TYPE_NUMERIC:    //field that represents number cell type
+                        System.out.print(cell.getNumericCellValue() + "\t\t\t");  //Operation
+                        break;
+                        default:
+                    }
+                } 
+                /*System.out.println("");*/ cnt++;//Operation
+            }
+            System.out.println(cnt);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }  
+    }
 }
-System.out.println(cnt);
-}  
-catch(Exception e)  
-{  
-e.printStackTrace();  
-}  
-}  
-}  
