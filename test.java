@@ -14,7 +14,7 @@ public class Test{
             XSSFWorkbook wb = new XSSFWorkbook(fis);
             XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
             Iterator<Row> itr = sheet.iterator();    //iterating over excel file
-            int cnt = 0;
+            // int cnt = 0;
             while (itr.hasNext()){
                 Row row = itr.next();
                 Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
