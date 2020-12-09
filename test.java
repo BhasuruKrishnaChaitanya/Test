@@ -48,8 +48,8 @@ public class test{
             int emailInvalidCounter=0;
             List<String> palindromeNames = new ArrayList<String>();
             while (itr.hasNext()){
-                Row row = itr.next();
-                Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
+                Row row1 = itr.next();
+                Iterator<Cell> cellIterator = row1.cellIterator();   //iterating over each column
                 while (cellIterator.hasNext()){
                     Cell cell = cellIterator.next();
                     switch (cell.getCellType()){
