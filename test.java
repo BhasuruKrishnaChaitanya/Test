@@ -20,6 +20,18 @@ public class test{
             return false;  
         }  
     } 
+
+    public static boolean isValid(String email) { 
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+							"[a-zA-Z0-9_+&*-]+)*@" + 
+							"(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+							"A-Z]{2,7}$"; 
+							
+		Pattern pat = Pattern.compile(emailRegex); 
+		if (email == null) 
+			return false; 
+		return pat.matcher(email).matches(); 
+	}
 	
     public static void main(String[] args){
         try{
@@ -30,7 +42,8 @@ public class test{
             XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
             Iterator<Row> itr = sheet.iterator();    //iterating over excel file
             int rowCounter = 0;
-            int palindromeNameCounter=0;
+            // int palindromeNameCounter=0;
+            int emailInvalidCounter=0;
             List<String> palindromeNames = new ArrayList<String>();
             while (itr.hasNext()){
                 Row row = itr.next();
@@ -45,6 +58,11 @@ public class test{
                         		palindromeNames.add(cell.getStringCellValue());
                         	}
                         }
+                        if(cell.getColumnIndex()==1) {
+                        	if(!isValid(cell.getStringCellValue())) {
+                        		emailInvalidCounter++;
+                        	}
+                        }
                         break;
                         case Cell.CELL_TYPE_NUMERIC:    //field that represents number cell type
                         System.out.print(cell.getNumericCellValue() + "\t");  //Operation
@@ -57,6 +75,7 @@ public class test{
             }
             System.out.println(rowCounter);
             System.out.println(palindromeNames);
+            System.out.println(emailInvalidCounter);
         }
         catch(Exception e){
             e.printStackTrace();
