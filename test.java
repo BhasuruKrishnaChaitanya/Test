@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.poi.ss.usermodel.Cell;  
 import org.apache.poi.ss.usermodel.Row;  
@@ -50,6 +51,7 @@ public class test{
                 Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
                 while (cellIterator.hasNext()){
                     Cell cell = cellIterator.next();
+                    if(cell.getRowIndex()!=0) {
                     switch (cell.getCellType()){
                         case Cell.CELL_TYPE_STRING:    //field that represents string cell type
                         System.out.print(cell.getStringCellValue() + "\t");
@@ -68,6 +70,7 @@ public class test{
                         System.out.print(cell.getNumericCellValue() + "\t");  //Operation
                         break;
                         default:
+                    }
                     }
                 } 
                 System.out.println(""); 
