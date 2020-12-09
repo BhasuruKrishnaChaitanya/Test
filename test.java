@@ -6,30 +6,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;  
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;  
 public class test{
-	public static XSSFSheet sheet;
-	public static int getCount(XSSFSheet sheet) {
-		Iterator<Row> itr = sheet.iterator();    //iterating over excel file
-        int cnt = 0;
-        while (itr.hasNext()){
-            Row row = itr.next();
-            Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
-            while (cellIterator.hasNext()){
-                Cell cell = cellIterator.next();
-                switch (cell.getCellType()){
-                    case Cell.CELL_TYPE_STRING:    //field that represents string cell type
-                    System.out.print(cell.getStringCellValue() + "\t");  //Operation
-                    break;
-                    case Cell.CELL_TYPE_NUMERIC:    //field that represents number cell type
-                    System.out.print(cell.getNumericCellValue() + "\t");  //Operation
-                    break;
-                    default:
-                }
-            } 
-            System.out.println(""); 
-            cnt++;//Operation
-        }
-		return cnt;
-	}
 	
 	
     public static void main(String[] args){
@@ -64,7 +40,6 @@ public class test{
         catch(Exception e){
             e.printStackTrace();
         }  
-        getCount(sheet);
 
     }
     
