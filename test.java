@@ -30,13 +30,7 @@ public class test{
             while (itr.hasNext()){
                 Row row = itr.next();
                 Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
-                Cell cell = cellIterator.next();
-                System.out.print(cell.getStringCellValue() + "\t");
-                Cell cell = cellIterator.next();
-                System.out.print(cell.getStringCellValue() + "\t");
-                Cell cell = cellIterator.next();
-                System.out.print(cell.getNumericCellValue() + "\t");
-                /*while (cellIterator.hasNext()){
+                while (cellIterator.hasNext()){
                     Cell cell = cellIterator.next();
                     switch (cell.getCellType()){
                         case Cell.CELL_TYPE_STRING:    //field that represents string cell type
@@ -47,7 +41,7 @@ public class test{
                         break;
                         default:
                     }
-                }*/ 
+                } 
                 System.out.println(""); 
                 cnt++;//Operation
             }
